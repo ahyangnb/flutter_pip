@@ -26,7 +26,7 @@ class FloatRealContentView: UIView {
     
     private func setupUI() {
         self.backgroundColor = UIColor.colorWithHexString("#00FFFF")
-        self.frame.size = CGSize(width: 251.0, height: 39.0)
+        self.frame.size = CGSize(width: 213.0, height: 114.0)
         
         addSubview(nameLabel)
         

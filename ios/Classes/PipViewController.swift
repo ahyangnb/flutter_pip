@@ -31,7 +31,7 @@ class PipViewController: UIViewController, AVPictureInPictureControllerDelegate 
     // Setup the player
     private func setupPlayer() {
         playerLayer = AVPlayerLayer()
-        playerLayer.frame = .init(x: 0, y: 0, width: 300, height: 500)
+        playerLayer.frame = .init(x: 0, y: 0, width: 213, height: 114)
         if let mp4Video = Bundle.main.url(forResource: "background_video_of_pip", withExtension: "mp4") {
             let asset = AVAsset(url: mp4Video)
             let playerItem = AVPlayerItem(asset: asset)
@@ -105,7 +105,7 @@ class PipViewController: UIViewController, AVPictureInPictureControllerDelegate 
         if pipController.isPictureInPicturePossible {
             pipController.startPictureInPicture()
         } else {
-            print("Picture in Picture is not possible at this time.")
+            print("Picture in Picture is not possible at this time, Please make sure you has config `UIBackgroundModes` in file `Info.plist` of project.")
         }
     }
 

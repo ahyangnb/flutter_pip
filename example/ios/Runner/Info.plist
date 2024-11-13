@@ -22,8 +22,21 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>NSCameraUsageDescription</key>
+	<string>We need access to your camera to take photos in chat, video calls. Please grant the permissions.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We need access to your microphone for video calls. Please grant the permissions.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need access to your photo library to send pictures in chat and change your avatar in personal info. Please grant the permissions.</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIBackgroundModes</key>
+    	<array>
+    		<string>audio</string>
+    		<string>fetch</string>
+    		<string>location</string>
+    		<string>processing</string>
+    	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

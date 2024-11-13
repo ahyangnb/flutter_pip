@@ -1,15 +1,19 @@
 # flutter_pip
 
-A new Flutter plugin project.
+you must config 
+```
+<key>UIBackgroundModes</key>
+<array>
+	<string>audio</string>
+	<string>fetch</string>
+	<string>location</string>
+	<string>processing</string>
+</array>
+```
 
-## Getting Started
+to `/ios/Runner/Info.plist` of project.
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/to/develop-plugins),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+and add the file `background_video_of_pip.mp4` to Runner folder in ios.  
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
+# Flutter env
+Create by flutter 3.24.3

@@ -6,6 +6,10 @@ public class FlutterPipPlugin: NSObject, FlutterPlugin {
     let channel = FlutterMethodChannel(name: "flutter_pip", binaryMessenger: registrar.messenger())
     let instance = FlutterPipPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
+
+    /// Add the pip native widget factory.
+    let factory = PipWidgetViewFactory(messenger: registrar.messenger() as! any NSObject & FlutterBinaryMessenger)
+    registrar.register(factory, withId: "FlutterPipWidget-UiKitType")
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {

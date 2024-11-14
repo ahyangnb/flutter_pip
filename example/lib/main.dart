@@ -18,11 +18,20 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
   final _flutterPipPlugin = FlutterPip();
+  int count = 0;
 
   @override
   void initState() {
     super.initState();
     initPlatformState();
+    startRandomTextUpdate();
+  }
+
+  void startRandomTextUpdate() {
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      count += 1; // Generate a random int
+      InnerPipUtil.setDisplayText("RandomInt", count.toString(), []);
+    });
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
@@ -69,7 +78,8 @@ class _MyAppState extends State<MyApp> {
             ),
             TextButton(
               onPressed: () async {
-                print("PipPlugin.alreadyDisplayedPip;::${await InnerPipUtil.alreadyDisplayedPip}");
+                print(
+                    "PipPlugin.alreadyDisplayedPip;::${await InnerPipUtil.alreadyDisplayedPip}");
               },
               child: Text("alreadyDisplayedPip"),
             ),

@@ -93,7 +93,7 @@ class PipViewController: UIViewController, AVPictureInPictureControllerDelegate 
         label.text = conContent
         label.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        label.textColor = UIColor.colorWithHexString("#00ffff")
+        label.textColor = UIColor.colorWithHexString("#FF0000")
         label.adjustsFontSizeToFitWidth = true
         label.baselineAdjustment = .alignCenters
     }

@@ -3,9 +3,17 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_pip/flutter_pip.dart';
+import 'package:flutter_pip_example/pip_home_page.dart';
 
 void main() {
   runApp(const MyApp());
+}
+
+
+/// mainName must be the same as the method name
+@pragma('vm:entry-point')
+void pipReamContentMain() {
+  runApp(PipOverlay());
 }
 
 class MyApp extends StatefulWidget {
@@ -27,8 +35,9 @@ class _MyAppState extends State<MyApp> {
     startRandomTextUpdate();
   }
 
-  void startRandomTextUpdate() {
-    Timer.periodic(Duration(seconds: 1), (timer) {
+  Future<void> startRandomTextUpdate() async {
+    await Future.delayed(Duration(seconds: 6));
+    Timer.periodic(Duration(seconds: 3), (timer) {
       count += 1; // Generate a random int
       InnerPipUtil.setDisplayText("RandomInt", count.toString(), []);
     });

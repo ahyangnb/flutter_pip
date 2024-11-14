@@ -118,52 +118,18 @@ class PipViewController: UIViewController, AVPictureInPictureControllerDelegate 
         delegate!.flutterController!.view = nil
 
 
-        /// 尝试清空然后赋值旧版
-        /// error: Execution of the command buffer was aborted due to an error during execution. Insufficient Permission (to submit GPU work from background) (00000006:kIOGPUCommandBufferCallbackErrorBackgroundExecutionNotPermitted)
-//        delegate!.flutterController!.view = oldContent
-        /// 尝试用这个解决Permission error，结果是：pip.flutter.1.2.raster (32): EXC_BAD_ACCESS (code=1, address=0x30)
-//        DispatchQueue.main.async {
-//            self.delegate!.flutterController!.view = oldContent
-//        }
-        /// 然后尝试这个pip.flutter.1.2.raster (29): EXC_BAD_ACCESS (code=1, address=0x30)
-//        delegate!.flutterController!.viewDidLoad()
-
-        /// 测试添加为新的引擎内容
-        /// Error: Thread 1: "A view can only be associated with at most one view controller at a time! View <FlutterView: 0x10290c800; frame = (inf inf; 0 0); autoresize = W+H; gestureRecognizers = <NSArray: 0x30366f030>; backgroundColor = UIExtendedGrayColorSpace 0 0; layer = <CAMetalLayer: 0x30366e2b0>> is associated with <FlutterViewController: 0x10501fa00>. Clear this association before associating this view with <FlutterViewController: 0x10a010400>."
-//        let rootController = (rootWindow?.rootViewController as! FlutterViewController)
-//                flPiPEngine = engineGroup.makeEngine(withEntrypoint: "pipReamContentMain", libraryURI: nil)
-//                flPiPEngine!.run(withEntrypoint: "pipReamContentMain")
-//        delegate!.flutterController!.view = FlutterViewController(
-//                                                        engine: flPiPEngine!,
-//                                                        nibName: rootController.nibName,
-//                                                        bundle: rootController.nibBundle
-//                                                    ).view
-        /// 然后尝试，删除内容之后不会赋值新内容到view
-//        let rootController = (rootWindow?.rootViewController as! FlutterViewController)
-//                        flPiPEngine = engineGroup.makeEngine(withEntrypoint: "pipReamContentMain", libraryURI: nil)
-//                        flPiPEngine!.run(withEntrypoint: "pipReamContentMain")
-//                delegate!.flutterController! = FlutterViewController(
-//                                                                engine: flPiPEngine!,
-//                                                                nibName: rootController.nibName,
-//                                                                bundle: rootController.nibBundle
-//                                                            )
-        ///然后尝试添加旧内容到新的内容，结果：还是删除内容之后不会赋值新内容到view
-//        delegate!.flutterController?.view.addSubview(oldContent!)
-        
-        
-
-        /// 测试添加为新的Label，完全正常【即使在后台时中途修改】
+        /// Tested adding it as a new Label and it worked perfectly [even if it was changed midway through the background]
         let nativeLabel = UILabel()
         nativeLabel.text = "New Content"
         nativeLabel.textColor = UIColor.red
         nativeLabel.textAlignment = .center
         nativeLabel.frame = CGRect(x: 0, y: 0, width: 180, height: 48.0)
         delegate!.flutterController!.view = nativeLabel
-        /// 尝试重新赋值到旧版内容，结果：Execution of the command buffer was aborted due to an error during execution. Insufficient Permission (to submit GPU work from background) (00000006:kIOGPUCommandBufferCallbackErrorBackgroundExecutionNotPermitted)
+        /// Trying to reassign to the old version of the content results in: Execution of the command buffer was aborted due to an error during execution. Insufficient Permission (to submit GPU work from background) (00000006:kIOGPUCommandBufferCallbackErrorBackgroundExecutionNotPermitted)
         delegate!.flutterController!.view = oldContent
 
 
-        // 最后的添加操作。
+        // The final add operation.
         firstWindow?.addSubview(delegate!.flutterController!.view)
     }
 

@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class PipOverlay extends StatefulWidget {
   const PipOverlay({super.key});
@@ -11,15 +10,17 @@ class PipOverlay extends StatefulWidget {
 }
 
 class _PipOverlayState extends State<PipOverlay> {
-  RxInt randomInt = 0.obs;
+  int randomInt = 0;
   late Timer _timer;
 
   @override
   void initState() {
     super.initState();
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      randomInt.value =
-          DateTime.now().millisecondsSinceEpoch; // Example random value
+      setState(() {
+        randomInt =
+            DateTime.now().millisecondsSinceEpoch; // Example random value
+      });
     });
   }
 
@@ -34,9 +35,7 @@ class _PipOverlayState extends State<PipOverlay> {
     return MaterialApp(
       home: Scaffold(
         body: Center(
-          child: Obx(() {
-            return Text("Flutter Pip ${randomInt.value}");
-          }),
+          child: Text("Flutter Pip ${randomInt}"),
         ),
       ),
     );
